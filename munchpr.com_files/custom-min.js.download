@@ -1,0 +1,169 @@
+$(document).ready(function() {
+
+    $('#acceptGDPR').click(function() {
+        console.log("checkbox clicked");
+        if ($('#_form_3_submit').is(':disabled')) {
+            $('#_form_3_submit').removeAttr('disabled');
+        } else {
+            $('#_form_3_submit').attr('disabled', 'disabled');
+        }
+    });
+
+    console.log("testing");
+
+    // $('#contact-us').addClass('warning');
+
+    // $('#contact-us').find("input[name='email']").addClass('warning');
+
+    // var $findemail = $('#contact-us').find("input[name='email']");
+    //  $findemail.addClass('warning');
+    /*
+    $('#_form_5_submit').click(function() {
+    	console.log("contact submit clicked");
+
+        var $findname = $('#contact-us').find("input[name='fullname']");
+        var $findnamealert = $('#name-wrapper').find("#warningalert");
+
+        var $findemail = $('#contact-us').find("input[name='email']");
+        var $findemailalert = $('#email-wrapper').find("#warningalert");
+
+    	if($.trim($findname.val()) == '') { 
+    	    $findname.addClass('warning');
+    	    $findnamealert.addClass('warning');
+    	    console.log("warning on name");
+         } else {
+         	$findname.removeClass('warning');
+    	    $findnamealert.removeClass('warning');
+         }
+
+         if($.trim($findemail.val()) == '') { 
+    	    $findemail.addClass('warning');
+    	    $findemailalert.addClass('warning');
+    	    console.log("warning on email");
+         } else {
+         	$findemail.removeClass('warning');
+    	    $findemailalert.removeClass('warning');
+
+    	    var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    		var is_email=re.test($findemail.val());
+    		if(is_email){
+    		$findemailalert.text('This field is required.'); 
+    		$findemailalert.removeClass('warning');
+    		}
+    		else{
+    		$findemailalert.text('This is an invalid email address'); 
+    		$findemailalert.addClass('warning');
+    	    }
+
+         }
+
+    });
+    */
+
+    var n = $(".section_two").offset().top - 80;
+    $(window).scroll(function() {
+        n && ($(window).scrollTop() > n ? ($(".logo-munch").hide(), $(".icon-list").addClass("black"), $(".line-hamburger").addClass("black")) : ($(".logo-munch").show(), $(".icon-list").removeClass("black"), $(".line-hamburger").removeClass("black")))
+    });
+    var t = $(".modal-bg"),
+        e = $(".nav-wrap");
+    $("#menuToggle input").on("click", function() {
+        $(this).is(":checked") ? ($("body").css("overflow", "hidden"), t.animate({
+            opacity: "0.8"
+        }).css("pointer-events", "initial"), e.animate({
+            left: "0"
+        })) : (t.animate({
+            opacity: "0"
+        }).css("pointer-events", "none"), e.animate({
+            left: "-100%"
+        }), $("body").css("overflow", "initial"))
+    })
+}), $(document).ready(function() {
+    $('a[href*="#"]').not('[href="#"]').not('[href="#0"]').not("li[role=presentation] a").click(function(n) {
+        if (location.pathname.replace(/^\//, "") === this.pathname.replace(/^\//, "") && location.hostname === this.hostname) {
+            var t = $(this.hash);
+            t = t.length ? t : $("[name=" + this.hash.slice(1) + "]"), t.length && (n.preventDefault(), $("html, body").animate({
+                scrollTop: t.offset().top - 60
+            }, 1e3, function() {
+                var n = $(t);
+                if (n.is(":focus")) return !1;
+                n.attr("tabindex", "-1")
+            }))
+        }
+    })
+}), $(document).ready(function() {
+    var n = function() {
+        $(".info-block").each(function() {
+            var n = $(this).find(".content-right").height();
+            $(this).find(".image-left").height(n)
+        })
+    };
+    n(), $(window).resize(function() {
+        n()
+    })
+}), $(document).ready(function() {
+    0 === $("#contact-us").length ? $("#menu-item-456 a").on("click", function(n) {
+        n.preventDefault(), window.location.replace("https://munchpr.com#contact-us")
+    }) : $("#menu-item-456").on("click", function() {
+        var n = $(".modal-bg"),
+            t = $(".nav-wrap");
+        n.animate({
+            opacity: "0"
+        }).css("pointer-events", "none"), t.animate({
+            left: "-100%"
+        }), $("body").css("overflow", "initial"), $("#menuToggle input").prop("checked", !1)
+    }), $(".button-link").on("click", function() {
+        $.scrollify.disable()
+    })
+});
+
+$(document).ready(function() {
+
+    $('#carousel-example-generic').carousel({
+        interval: 5000,
+    });
+
+    if ($(".item.active").find(".videoslide").length > 0) {
+        setTimeout(function() {
+            $('#carousel-example-generic').carousel('pause');
+        }, 1)
+        $('.item.active video').get(0).play();
+        $('.item.active video').bind("ended", function() {
+            console.log('Video has ended!');
+            $('.item.active video').get(0).currentTime = 0;
+            $('.item.active video').get(0).pause();
+            $('.item.active video').unbind("ended");
+            $('#carousel-example-generic').carousel('next');
+        });
+    } else {
+        $('#carousel-example-generic').carousel('cycle');
+    }
+
+    $("#carousel-example-generic").on('slid.bs.carousel', function(e) {
+
+        if ($(".item.active").find(".videoslide").length > 0) {
+            console.log("its a video slide");
+            setTimeout(function() {
+                $('#carousel-example-generic').carousel('pause');
+            }, 1)
+            $('.item.active video').get(0).play();
+            $('.item.active video').bind("ended", function() {
+                console.log('Video has ended!');
+                $('.item.active video').get(0).currentTime = 0;
+                $('.item.active video').get(0).pause();
+                $('.item.active video').unbind("ended");
+                $('#carousel-example-generic').carousel('next');
+            });
+        } else {
+            $('#carousel-example-generic').carousel('cycle');
+        }
+
+    });
+    /*
+        $("#carousel-example-generic").on('slide.bs.carousel', function () {
+                      console.log("slideeeed");
+                       $('#carousel-example-generic').carousel('pause');
+        });
+    */
+    console.log("slideeeeX");
+
+});
